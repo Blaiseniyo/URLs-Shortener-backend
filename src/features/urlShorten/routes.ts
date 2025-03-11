@@ -19,7 +19,7 @@ import { isUserLoggedIn } from "../../shared/middleware/verifyLogin";
 
 const router = Router();
 
-// router.get("/:short_code", getShortCodeUrlLongUrlController);
+router.get("/l/:short_code", getShortCodeUrlLongUrlController);
 router.get("/urls", isUserLoggedIn, getAllURLsForUserController);
 router.post("/shorten", isUserLoggedIn, validate(shortenURLSchema), shortenURLController);
 router.get("/analytics/:short_code",isUserLoggedIn, getURLDetailsForUserController);
