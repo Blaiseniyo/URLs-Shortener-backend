@@ -60,8 +60,9 @@ export const getLongURLByShortCode = async (shortCode: string) => {
         console.log("shortCode", shortCode);
         const url = await URL.findOne({ where: { short_code: shortCode } });
         if (!url) {
-            throw new NotFoundError('Eheehh URL not found');
+            throw new NotFoundError('Eheehh URL not found')
         }
+        const update = await url.update({ clicks: (url.clicks || 0) + 1 });
         return url.dataValues.long_url;
     } catch (error) {
         console.error(error);
